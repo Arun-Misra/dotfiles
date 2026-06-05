@@ -8,7 +8,6 @@ WALLPAPER="$(caelestia shell wallpaper get)"
 BG=$(grep '^\$background =' "$SCHEME" | cut -d'=' -f2 | tr -d ' ')
 FG=$(grep '^\$text =' "$SCHEME" | cut -d'=' -f2 | tr -d ' ')
 ACCENT=$(grep '^\$primary =' "$SCHEME" | cut -d'=' -f2 | tr -d ' ')
-TERM_BG="CC$BG"
 
 echo "[*] Wallpaper : $WALLPAPER"
 echo "[*] Background: $BG"
@@ -20,29 +19,13 @@ sudo cp "$WALLPAPER" /boot/limine/wallpaper.jpg
 
 TMP=$(mktemp)
 
-awk -v bg="$BG" \
-    -v fg="$FG" \
-    -v accent="$ACCENT" \
-    -v termbg="$TERM_BG" '
+awk -v bg="$BG" '
 /^# BEGIN THEME-SYNC$/ {
     print "# BEGIN THEME-SYNC"
     print "wallpaper: boot():/limine/wallpaper.jpg"
     print "wallpaper_style: stretched"
-    print ""
-
-    print "interface_branding: ArunOS"
-    print "interface_branding_colour: " accent
-    print ""
-
-    print "interface_help_colour: " accent
-    print ""
-
-    print "term_background: " termbg
-    print "term_foreground: " fg
-    print ""
-
     print "backdrop: " bg
-    print "# END THEME-SYNC"	
+    print "# END THEME-SYNC"
 
     skip=1
     next
