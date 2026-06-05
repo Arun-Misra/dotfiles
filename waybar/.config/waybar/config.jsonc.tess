@@ -1,0 +1,38 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+
+  "modules-left": ["cpu","memory"],
+  "modules-center": ["clock"],
+  "modules-right": ["custom/buds","pulseaudio","network","battery","tray"],
+
+  "custom/buds": {
+    "exec": "~/.local/bin/buds-battery",
+    "interval": 30
+  },
+
+  "clock": {
+    "format": "󰥔 {:%a %d %b  %H:%M}"
+  },
+
+  "cpu": {
+    "format": "󰍛 {usage}%"
+  },
+
+  "memory": {
+    "format": "󰘚 {percentage}%"
+  },
+
+  "pulseaudio": {
+    "format": "󰕾 {volume}%"
+  },
+
+  "network": {
+    "format-wifi": "󰤨 {signalStrength}%"
+  },
+
+  "battery": {
+    "format": "󰁹 {capacity}%"
+  }
+}
