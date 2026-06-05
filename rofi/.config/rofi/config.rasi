@@ -1,0 +1,85 @@
+configuration {
+    modi: "drun";
+    show-icons: true;
+    terminal: "kitty";
+    drun-display-format: "{name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+}
+
+* {
+    bg-col:  #1e1e2e;
+    bg-col-light: #313244;
+    border-col: #cba6f7;
+    selected-col: #cba6f7;
+    fg-col: #cdd6f4;
+    fg-col-main: #cdd6f4;
+    fg-col-carets: #cba6f7;
+}
+
+window {
+    height: 360px;
+    border: 3px;
+    border-color: @border-col;
+    background-color: @bg-col;
+    border-radius: 12px;
+}
+
+mainbox {
+    background-color: @bg-col;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-col-light;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 2px;
+}
+
+prompt {
+    background-color: @bg-col-light;
+    padding: 6px;
+    text-color: @fg-col-main;
+    border-radius: 3px;
+}
+
+entry {
+    padding: 6px;
+    text-color: @fg-col-main;
+    background-color: @bg-col-light;
+}
+
+listview {
+    border: 0px;
+    padding: 6px;
+    margin: 6px 0px 0px 6px;
+    background-color: @bg-col;
+    columns: 1;
+    lines: 5;
+    fixed-height: true;
+}
+
+element {
+    padding: 5px;
+    background-color: @bg-col;
+    text-color: @fg-col-main;
+}
+
+element selected {
+    background-color: @selected-col;
+    text-color: @bg-col;
+    border-radius: 3px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 25px;
+}
