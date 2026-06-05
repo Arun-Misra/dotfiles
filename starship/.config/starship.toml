@@ -1,0 +1,51 @@
+# Catppuccin Mocha Starship Theme
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$python\
+$rust\
+$nodejs\
+$character"""
+
+directory = {
+    style = "bold magenta",
+    format = "[$path]($style) ",
+    truncation_length = 3,
+    truncation_symbol = "…/",
+}
+
+git_branch = {
+    symbol = " ",
+    style = "bold blue",
+    format = "on [$symbol$branch]($style) ",
+}
+
+git_status = {
+    style = "bold red",
+    format = "([$all_status$git_state]($style) )",
+}
+
+python = {
+    symbol = "🐍 ",
+    style = "bold yellow",
+    format = "via [${symbol}${pyenv_prefix}(${version} )]($style)",
+}
+
+rust = {
+    symbol = "🦀 ",
+    style = "bold orange",
+    format = "via [${symbol}${version} ]($style)",
+}
+
+nodejs = {
+    symbol = "󰎙 ",
+    style = "bold green",
+    format = "via [${symbol}${version} ]($style)",
+}
+
+character = {
+    success_symbol = "[➜](bold green)",
+    error_symbol = "[➜](bold red)",
+}
