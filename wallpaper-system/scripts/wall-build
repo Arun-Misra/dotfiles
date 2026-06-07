@@ -54,5 +54,15 @@ ffmpeg \
     -y \
     -loglevel error
 
+echo "[*] Extracting frames"
+
+ffmpeg \
+    -i "$VIDEO" \
+    -vf fps=12 \
+    "$PACKAGE/frames/%04d.jpg" \
+    -y \
+    -loglevel error
+
 echo "[✓] Created $PACKAGE"
+
 
