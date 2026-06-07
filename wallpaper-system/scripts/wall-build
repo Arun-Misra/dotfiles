@@ -33,12 +33,23 @@ EOF
 
 echo "[*] Generating preview"
 
+
+DURATION=$(
+    ffprobe \
+    -v error \
+    -show_entries format=duration \
+    -of default=noprint_wrappers=1:nokey=1 \
+    "$VIDEO"
+)
+
+MIDPOINT=$(awk "BEGIN { print $DURATION / 2 }")
+
 ffmpeg \
+    -ss "$MIDPOINT" \
     -i "$VIDEO" \
     -frames:v 1 \
     -q:v 2 \
     "$PACKAGE/preview.jpg" \
     -y \
     -loglevel error
-
 echo "[✓] Created $PACKAGE"
