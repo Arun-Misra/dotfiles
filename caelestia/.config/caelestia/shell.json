@@ -1,0 +1,77 @@
+{
+    "appearance": {
+        "transparency": {
+            "base": 0.11796393640262565,
+            "enabled": true,
+            "layers": 0.41559602403149154
+        }
+    },
+    "background": {
+        "desktopClock": {
+            "background": {
+                "enabled": false,
+                "opacity": 0.3027734583074397
+            },
+            "enabled": true,
+            "invertColors": false,
+            "position": "top-right"
+        },
+        "visualiser": {
+            "autoHide": false,
+            "enabled": true,
+            "rounding": 0,
+            "spacing": 0.235613761980509
+        }
+    },
+    "bar": {
+        "activeWindow": {
+            "compact": true,
+            "inverted": false
+        },
+        "clock": {
+            "background": false,
+            "showDate": true
+        },
+        "dragThreshold": 20,
+        "persistent": true,
+        "showOnHover": true,
+        "status": {
+            "showAudio": true,
+            "showKbLayout": true,
+            "showMicrophone": true
+        },
+        "tray": {
+            "background": false,
+            "compact": false
+        },
+        "workspaces": {
+            "maxWindowIcons": 5,
+            "occupiedBg": false
+        }
+    },
+    "launcher": {
+        "useFuzzy": {
+            "actions": true,
+            "apps": true,
+            "schemes": true,
+            "variants": true,
+            "wallpapers": true
+        }
+    },
+    "notifs": {
+        "openExpanded": false
+    },
+    "services": {
+        "lyricsBackend": "Auto",
+        "showLyrics": true
+    },
+    "session": {
+        "commands": {
+            "logout": [
+                "hyprctl",
+                "dispatch",
+                "exit"
+            ]
+        }
+    }
+}

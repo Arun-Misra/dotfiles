@@ -1,0 +1,5 @@
+{
+    "wallpaper": {
+        "postHook": "python3 -c \"import json; p='/home/arun/.local/state/caelestia/scheme.json'; d=json.loads(open(p).read()); open(p,'w').write(json.dumps(d))\""
+    }
+}
