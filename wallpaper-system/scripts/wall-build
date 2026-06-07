@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: wall-build <video>"
+    exit 1
+fi
+
+VIDEO="$1"
+
+echo "[*] Input: $VIDEO"
+echo "[*] Builder not implemented yet"
