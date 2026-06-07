@@ -1,12 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ $# -ne 1 ]]; then
-    echo "Usage: wall-build <video>"
+DURATION_LIMIT=10
+VIDEO=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -d|--duration)
+            DURATION_LIMIT="$2"
+            shift 2
+            ;;
+        *)
+            VIDEO="$1"
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$VIDEO" ]]; then
+    echo "Usage: wall-build <video> [-d seconds]"
     exit 1
 fi
 
-VIDEO="$(realpath "$1")"
+if (( DURATION_LIMIT < 1 || DURATION_LIMIT > 30 )); then
+    echo "Error: duration must be between 1 and 30 seconds"
+    exit 1
+fi
+
+VIDEO="$(realpath "$VIDEO")"
 
 if [[ ! -f "$VIDEO" ]]; then
     echo "File not found: $VIDEO"
@@ -27,6 +48,7 @@ cat > "$PACKAGE/metadata.json" <<EOF
 {
   "type": "animated",
   "fps": 12,
+  "duration": $DURATION_LIMIT,
   "loop": true,
   "theme_source": "preview.jpg"
 }
@@ -57,6 +79,7 @@ ffmpeg \
 echo "[*] Extracting frames"
 
 ffmpeg \
+    -t "$DURATION_LIMIT" \
     -i "$VIDEO" \
     -vf fps=12 \
     "$PACKAGE/frames/%04d.jpg" \
