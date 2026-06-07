@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: wall-info <package.wall>"
+    exit 1
+fi
+
+PACKAGE="$1"
+
+if [[ ! -d "$PACKAGE" ]]; then
+    echo "Package not found: $PACKAGE"
+    exit 1
+fi
+
+FRAME_COUNT=$(find "$PACKAGE/frames" -type f | wc -l)
+
+echo "Package: $(basename "$PACKAGE")"
+echo "Frames: $FRAME_COUNT"
