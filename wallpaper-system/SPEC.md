@@ -33,6 +33,7 @@ Required structure:
 cyberpunk.wall/
 ├── metadata.json
 ├── preview.jpg
+├── source.mp4
 └── frames/
 
 metadata.json:
