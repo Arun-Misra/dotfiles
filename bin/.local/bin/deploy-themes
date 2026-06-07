@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -e
+
+echo "[*] Deploying SDDM config..."
+sudo install -Dm644 \
+  "$HOME/dotfiles/system/sddm/theme.conf" \
+  /etc/sddm.conf.d/theme.conf
+
+echo "[*] Deploying SDDM theme..."
+sudo rsync -a --delete \
+  "$HOME/dotfiles/system/sddm-theme/arun/" \
+  /usr/share/sddm/themes/arun/
+
+echo "[*] Deploying Limine config..."
+sudo install -Dm644 \
+  "$HOME/dotfiles/system/limine/limine.conf" \
+  /boot/limine.conf
+
+echo "[✓] Done"
