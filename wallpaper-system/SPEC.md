@@ -53,3 +53,16 @@ preview.jpg:
 
 frames/:
 - Runtime animation frames
+
+## Animated Wallpaper Limits
+
+Defaults:
+
+- Duration: 10 seconds
+- Maximum Duration: 30 seconds
+- FPS: 12
+
+Duration may be overridden using:
+
+wall-build -d <seconds>
+wall-build --duration <seconds>
