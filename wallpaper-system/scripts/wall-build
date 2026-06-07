@@ -6,7 +6,29 @@ if [[ $# -ne 1 ]]; then
     exit 1
 fi
 
-VIDEO="$1"
+VIDEO="$(realpath "$1")"
 
-echo "[*] Input: $VIDEO"
-echo "[*] Builder not implemented yet"
+if [[ ! -f "$VIDEO" ]]; then
+    echo "File not found: $VIDEO"
+    exit 1
+fi
+
+NAME="$(basename "$VIDEO")"
+NAME="${NAME%.*}"
+
+PACKAGE="${NAME}.wall"
+
+mkdir -p "$PACKAGE"
+
+cp "$VIDEO" "$PACKAGE/source.mp4"
+
+cat > "$PACKAGE/metadata.json" <<EOF
+{
+  "type": "animated",
+  "fps": 12,
+  "loop": true,
+  "theme_source": "preview.jpg"
+}
+EOF
+
+echo "[✓] Created $PACKAGE"
