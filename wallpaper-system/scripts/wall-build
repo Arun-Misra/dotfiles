@@ -31,4 +31,14 @@ cat > "$PACKAGE/metadata.json" <<EOF
 }
 EOF
 
+echo "[*] Generating preview"
+
+ffmpeg \
+    -i "$VIDEO" \
+    -frames:v 1 \
+    -q:v 2 \
+    "$PACKAGE/preview.jpg" \
+    -y \
+    -loglevel error
+
 echo "[✓] Created $PACKAGE"
