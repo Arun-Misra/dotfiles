@@ -16,4 +16,18 @@ fi
 FRAME_COUNT=$(find "$PACKAGE/frames" -type f | wc -l)
 
 echo "Package: $(basename "$PACKAGE")"
+echo
+
 echo "Frames: $FRAME_COUNT"
+
+[[ -f "$PACKAGE/preview.jpg" ]] \
+    && echo "Preview: yes" \
+    || echo "Preview: no"
+
+[[ -f "$PACKAGE/source.mp4" ]] \
+    && echo "Source: yes" \
+    || echo "Source: no"
+
+[[ -f "$PACKAGE/metadata.json" ]] \
+    && echo "Metadata: yes" \
+    || echo "Metadata: no"
