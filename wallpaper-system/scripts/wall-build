@@ -19,6 +19,7 @@ NAME="${NAME%.*}"
 PACKAGE="${NAME}.wall"
 
 mkdir -p "$PACKAGE"
+mkdir -p "$PACKAGE/frames"
 
 cp "$VIDEO" "$PACKAGE/source.mp4"
 
@@ -52,4 +53,6 @@ ffmpeg \
     "$PACKAGE/preview.jpg" \
     -y \
     -loglevel error
+
 echo "[✓] Created $PACKAGE"
+
