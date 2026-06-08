@@ -1,31 +1,44 @@
 import QtQuick
+import Quickshell
+import Quickshell.Wayland
 
-Item {
-    id: root
+ShellRoot {
+    PanelWindow {
+        id: root
 
-    property int frameIndex: 0
-
-    property var frames: [
-        "/tmp/frame1.jpg",
-        "/tmp/frame2.jpg",
-        "/tmp/frame3.jpg"
-    ]
-
-    Timer {
-        interval: 83
-        running: true
-        repeat: true
-
-        onTriggered: {
-            frameIndex =
-                (frameIndex + 1) % frames.length
+        anchors {
+            top: true
+            bottom: true
+            left: true
+            right: true
         }
-    }
 
-    Image {
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectCrop
+        property int frameIndex: 0
 
-        source: root.frames[root.frameIndex]
+        property var frames: [
+            "/home/arun/Pictures/Wallpapers/c1.jpg",
+            "/home/arun/Pictures/Wallpapers/c2.jpg",
+            "/home/arun/Pictures/Wallpapers/c3.jpg"
+        ]
+
+        Timer {
+            interval: 1000
+            running: true
+            repeat: true
+
+            onTriggered: {
+                root.frameIndex =
+                    (root.frameIndex + 1) %
+                    root.frames.length
+            }
+        }
+
+        Image {
+            anchors.fill: parent
+
+            fillMode: Image.PreserveAspectCrop
+
+            source: root.frames[root.frameIndex]
+        }
     }
 }
