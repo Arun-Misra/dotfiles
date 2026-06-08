@@ -32,6 +32,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 fastfetch
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/dotfiles/scripts:$PATH"
+export PATH="$HOME/dotfiles/wallpaper-system/scripts:$PATH"
 # Load Caelestia terminal colors on startup
 function yy() {                          
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
