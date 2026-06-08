@@ -21,9 +21,9 @@ ShellRoot {
         let result = [];
         for (let i = 1; i <= 120; i++) {
           result.push(
-            "file:///tmp/png-test/"
+            "file:///tmp/webp-test/"
             + String(i).padStart(4, "0")
-            + ".png"
+            + ".webp"
         );
     }
     return result;
