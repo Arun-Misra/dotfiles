@@ -13,9 +13,21 @@ if [[ ! -d "$PACKAGE" ]]; then
     exit 1
 fi
 
+TYPE=$(jq -r '.type' "$PACKAGE/metadata.json")
+FPS=$(jq -r '.fps' "$PACKAGE/metadata.json")
+DURATION=$(jq -r '.duration' "$PACKAGE/metadata.json")
+LOOP=$(jq -r '.loop' "$PACKAGE/metadata.json")
+
 FRAME_COUNT=$(find "$PACKAGE/frames" -type f | wc -l)
 
 echo "Package: $(basename "$PACKAGE")"
+echo
+
+echo "Type: $TYPE"
+echo "Duration: ${DURATION}s"
+echo "FPS: $FPS"
+echo "Loop: $LOOP"
+
 echo
 
 echo "Frames: $FRAME_COUNT"
