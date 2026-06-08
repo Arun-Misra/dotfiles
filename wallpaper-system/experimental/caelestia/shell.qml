@@ -55,5 +55,12 @@ ShellRoot {
                 visible: index === root.frameIndex
             }
         }
-    }
+	Timer {
+    interval: 10000
+    running: true
+    repeat: false
+
+    onTriggered: Qt.quit()
+}
+}
 }
