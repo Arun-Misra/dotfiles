@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: wall-set <package.wall>"
+    exit 1
+fi
+
+PACKAGE="$1"
+
+PREVIEW="$PACKAGE/preview.jpg"
+
+if [[ ! -f "$PREVIEW" ]]; then
+    echo "Preview not found"
+    exit 1
+fi
+
+echo "[*] Applying wallpaper"
+
+caelestia wallpaper -f "$PREVIEW"
+
+echo "[*] Running theme-sync"
+
+theme-sync
+
+echo "[✓] Wallpaper package applied"
