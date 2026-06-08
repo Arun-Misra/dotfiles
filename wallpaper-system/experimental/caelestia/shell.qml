@@ -16,16 +16,14 @@ ShellRoot {
         property int frameIndex: 0
 
 	property var frames: {
-    let result = [];
-
-    for (let i = 1; i <= 30; i++) {
-        result.push(
-            "file:///home/arun/Pictures/Wallpapers/quality_restoration_20260531151700839.wall/frames/"
+        let result = [];
+        for (let i = 1; i <= 120; i++) {
+          result.push(
+            "file:///tmp/png-test/"
             + String(i).padStart(4, "0")
-            + ".jpg"
+            + ".png"
         );
     }
-
     return result;
 }
         Timer {
