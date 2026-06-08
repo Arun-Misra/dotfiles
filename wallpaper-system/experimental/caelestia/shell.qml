@@ -6,6 +6,8 @@ ShellRoot {
     PanelWindow {
         id: root
 
+
+
         anchors {
             top: true
             bottom: true
