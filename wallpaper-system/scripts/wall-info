@@ -13,6 +13,16 @@ if [[ ! -d "$PACKAGE" ]]; then
     exit 1
 fi
 
+[[ -f "$PACKAGE/metadata.json" ]] || {
+    echo "Error: metadata.json doesnt exist, rebuild"
+    exit 1
+}
+
+[[ -d "$PACKAGE/frames" ]] || {
+    echo "Error: Image extraction not successful, rebuild"
+    exit 1
+}
+
 TYPE=$(jq -r '.type' "$PACKAGE/metadata.json")
 FPS=$(jq -r '.fps' "$PACKAGE/metadata.json")
 DURATION=$(jq -r '.duration' "$PACKAGE/metadata.json")
@@ -39,7 +49,3 @@ echo "Frames: $FRAME_COUNT"
 [[ -f "$PACKAGE/source.mp4" ]] \
     && echo "Source: yes" \
     || echo "Source: no"
-
-[[ -f "$PACKAGE/metadata.json" ]] \
-    && echo "Metadata: yes" \
-    || echo "Metadata: no"
