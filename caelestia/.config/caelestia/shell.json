@@ -63,7 +63,8 @@
     },
     "services": {
         "lyricsBackend": "Auto",
-        "showLyrics": true
+        "showLyrics": true,
+        "useFahrenheit": false
     },
     "session": {
         "commands": {
