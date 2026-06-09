@@ -50,7 +50,8 @@ cat > "$PACKAGE/metadata.json" <<EOF
   "fps": 12,
   "duration": $DURATION_LIMIT,
   "loop": true,
-  "theme_source": "preview.jpg"
+  "theme_source": "preview.webp",
+  "frame_format": "webp"
 }
 EOF
 
@@ -71,8 +72,9 @@ ffmpeg \
     -ss "$MIDPOINT" \
     -i "$VIDEO" \
     -frames:v 1 \
-    -q:v 2 \
-    "$PACKAGE/preview.jpg" \
+    -c:v libwebp \
+    -q:v 80 \
+    "$PACKAGE/preview.webp" \
     -y \
     -loglevel error
 
@@ -82,7 +84,9 @@ ffmpeg \
     -t "$DURATION_LIMIT" \
     -i "$VIDEO" \
     -vf fps=12 \
-    "$PACKAGE/frames/%04d.jpg" \
+    -c:v libwebp \
+    -q:v 80 \
+    "$PACKAGE/frames/%04d.webp" \
     -y \
     -loglevel error
 

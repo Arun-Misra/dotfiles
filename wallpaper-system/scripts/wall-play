@@ -14,6 +14,7 @@ if [[ ! -d "$PACKAGE" ]]; then
 fi
 
 FPS=$(jq -r '.fps' "$PACKAGE/metadata.json")
+FRAME_FORMAT=$(jq -r '.frame_format // "jpg"' "$PACKAGE/metadata.json")
 
 TMP_VIDEO=$(mktemp --suffix=.mp4)
 
@@ -21,7 +22,7 @@ echo "[*] Building temporary video..."
 
 ffmpeg \
     -framerate "$FPS" \
-    -i "$PACKAGE/frames/%04d.jpg" \
+    -i "$PACKAGE/frames/%04d.$FRAME_FORMAT" \
     -c:v libx264 \
     -pix_fmt yuv420p \
     "$TMP_VIDEO" \

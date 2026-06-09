@@ -21,7 +21,7 @@ ShellRoot {
         let result = [];
         for (let i = 1; i <= 120; i++) {
           result.push(
-            "file:///tmp/webp-test/"
+            "file:///home/arun/Pictures/Wallpapers/quality_restoration_20260531151700839.wall/frames/"
             + String(i).padStart(4, "0")
             + ".webp"
         );
