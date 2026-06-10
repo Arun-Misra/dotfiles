@@ -8,12 +8,20 @@ fi
 
 PACKAGE="$1"
 
+METADATA="$PACKAGE/metadata.json"
 PREVIEW="$PACKAGE/preview.jpg"
 
-if [[ ! -f "$PREVIEW" ]]; then
-    echo "Preview not found"
+if [[ ! -f "$METADATA" ]]; then
+    echo "metadata.json not found"
     exit 1
 fi
+
+if [[ ! -f "$PREVIEW" ]]; then
+    echo "preview.jpg not found"
+    exit 1
+fi
+
+TYPE=$(jq -r '.type' "$METADATA")
 
 echo "[*] Applying wallpaper"
 
@@ -22,5 +30,26 @@ caelestia wallpaper -f "$PREVIEW"
 echo "[*] Running theme-sync"
 
 theme-sync
+
+echo "[*] Stopping existing mpvpaper"
+
+pkill -x mpvpaper 2>/dev/null || true
+
+if [[ "$TYPE" == "animated" ]]; then
+    VIDEO="$PACKAGE/source.mp4"
+
+    if [[ ! -f "$VIDEO" ]]; then
+        echo "source.mp4 not found"
+        exit 1
+    fi
+
+    echo "[*] Starting mpvpaper"
+
+    nohup mpvpaper \
+        -o "--hwdec=vaapi --loop-file=inf --no-audio" \
+        '*' \
+        "$VIDEO" \
+        >/dev/null 2>&1 &
+fi
 
 echo "[✓] Wallpaper package applied"
