@@ -62,7 +62,7 @@
         "openExpanded": false
     },
     "services": {
-        "lyricsBackend": "Auto",
+        "lyricsBackend": "NetEase",
         "showLyrics": true,
         "useFahrenheit": false
     },

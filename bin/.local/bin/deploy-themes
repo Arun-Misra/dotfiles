@@ -16,4 +16,9 @@ sudo install -Dm644 \
   "$HOME/dotfiles/system/limine/limine.conf" \
   /boot/limine.conf
 
+echo "[*] Deploying Caelestia shell..."
+sudo rsync -a --delete \
+  "$HOME/dotfiles/quickshell/.config/quickshell/caelestia/" \
+  /etc/xdg/quickshell/caelestia/
+
 echo "[✓] Done"
