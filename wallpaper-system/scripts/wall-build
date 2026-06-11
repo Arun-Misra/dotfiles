@@ -40,18 +40,13 @@ NAME="${NAME%.*}"
 PACKAGE="${NAME}.wall"
 
 mkdir -p "$PACKAGE"
-mkdir -p "$PACKAGE/frames"
 
-cp "$VIDEO" "$PACKAGE/source.mp4"
+mv "$VIDEO" "$PACKAGE/source.mp4"
 
 cat > "$PACKAGE/metadata.json" <<EOF
 {
   "type": "animated",
-  "fps": 12,
-  "duration": $DURATION_LIMIT,
-  "loop": true,
   "theme_source": "preview.jpg",
-  "frame_format": "webp"
 }
 EOF
 
@@ -74,18 +69,6 @@ ffmpeg \
     -frames:v 1 \
     -q:v 2 \
     "$PACKAGE/preview.jpg" \
-    -y \
-    -loglevel error
-
-echo "[*] Extracting frames"
-
-ffmpeg \
-    -t "$DURATION_LIMIT" \
-    -i "$VIDEO" \
-    -vf fps=12 \
-    -c:v libwebp \
-    -q:v 80 \
-    "$PACKAGE/frames/%04d.webp" \
     -y \
     -loglevel error
 
