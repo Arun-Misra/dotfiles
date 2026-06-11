@@ -21,9 +21,22 @@ Searcher {
     property bool previewColourLock
 
     function setWallpaper(path: string): void {
-        actualCurrent = path;
-        Quickshell.execDetached(["caelestia", "wallpaper", "-f", path, ...smartArg]);
-    }
+    actualCurrent = path;
+
+    Quickshell.execDetached([
+        "sh",
+        "-c",
+        "pkill -x mpvpaper 2>/dev/null || true; rm -f ~/.cache/mpvpaper-active"
+    	]);
+
+    	Quickshell.execDetached([
+        	"caelestia",
+        	"wallpaper",
+        	"-f",
+       		path,
+        	...smartArg
+    		]);
+	}
 
     function preview(path: string): void {
         previewPath = path;
