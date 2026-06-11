@@ -41,7 +41,6 @@ PACKAGE="${NAME}.wall"
 
 mkdir -p "$PACKAGE"
 
-mv "$VIDEO" "$PACKAGE/source.mp4"
 
 cat > "$PACKAGE/metadata.json" <<EOF
 {
@@ -71,6 +70,8 @@ ffmpeg \
     "$PACKAGE/preview.jpg" \
     -y \
     -loglevel error
+
+mv "$VIDEO" "$PACKAGE/source.mp4"
 
 echo "[✓] Created $PACKAGE"
 
