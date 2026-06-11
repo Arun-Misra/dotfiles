@@ -21,9 +21,13 @@ Variants {
         screen: modelData
         name: "background"
         WlrLayershell.exclusionMode: ExclusionMode.Ignore
-        WlrLayershell.layer: contentItem.Config.background.wallpaperEnabled ? WlrLayer.Background : WlrLayer.Bottom
-        color: contentItem.Config.background.wallpaperEnabled ? "black" : "transparent"
-        surfaceFormat.opaque: false
+        WlrLayershell.layer: contentItem.Config.background.wallpaperEnabled ? WlrLayer.Bottom : WlrLayer.Background
+	color: win.externalWallpaper
+       ? "transparent"
+       : (contentItem.Config.background.wallpaperEnabled
+            ? "black"
+            : "transparent")
+	surfaceFormat.opaque: false
 
         anchors.top: true
         anchors.bottom: true
