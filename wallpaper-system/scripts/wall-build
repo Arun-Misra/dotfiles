@@ -45,7 +45,7 @@ mkdir -p "$PACKAGE"
 cat > "$PACKAGE/metadata.json" <<EOF
 {
   "type": "animated",
-  "theme_source": "preview.jpg",
+  "theme_source": "preview.jpg"
 }
 EOF
 
@@ -71,7 +71,7 @@ ffmpeg \
     -y \
     -loglevel error
 
-mv "$VIDEO" "$PACKAGE/source.mp4"
+cp "$VIDEO" "$PACKAGE/source.mp4"
 
 echo "[✓] Created $PACKAGE"
 
