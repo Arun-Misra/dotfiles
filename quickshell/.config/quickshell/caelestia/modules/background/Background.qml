@@ -7,12 +7,14 @@ import Caelestia.Config
 import qs.components
 import qs.components.containers
 import qs.services
+import Quickshell.Io
 
 Variants {
     model: Screens.screens.filter(s => GlobalConfig.forScreen(s.name).background.enabled)
 
     StyledWindow {
         id: win
+	property bool externalWallpaper: false
 
         required property ShellScreen modelData
 
@@ -27,7 +29,17 @@ Variants {
         anchors.bottom: true
         anchors.left: true
         anchors.right: true
+	FileView {
+	    path: "/home/arun/.cache/mpvpaper-active"
+	    watchChanges: true
+	    printErrors: false
 
+	    onLoaded: win.externalWallpaper = true
+
+	    onFileChanged: reload()
+
+	    onLoadFailed: win.externalWallpaper = false
+    	}
         Item {
             id: behindClock
 
@@ -37,9 +49,9 @@ Variants {
                 id: wallpaper
 
                 asynchronous: true
-
+	
                 anchors.fill: parent
-                active: Config.background.wallpaperEnabled
+		active:Config.background.wallpaperEnabled &&			!win.externalWallpaper
 
                 sourceComponent: Wallpaper {}
             }

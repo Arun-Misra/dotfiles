@@ -10,6 +10,7 @@ PACKAGE="$1"
 
 METADATA="$PACKAGE/metadata.json"
 PREVIEW="$PACKAGE/preview.jpg"
+MPVPAPER_FLAG="$HOME/.cache/mpvpaper-active"
 
 if [[ ! -f "$METADATA" ]]; then
     echo "metadata.json not found"
@@ -34,6 +35,8 @@ theme-sync
 echo "[*] Stopping existing mpvpaper"
 
 pkill -x mpvpaper 2>/dev/null || true
+rm -f "$MPVPAPER_FLAG"
+
 
 if [[ "$TYPE" == "animated" ]]; then
     VIDEO="$PACKAGE/source.mp4"
@@ -50,6 +53,8 @@ if [[ "$TYPE" == "animated" ]]; then
         '*' \
         "$VIDEO" \
         >/dev/null 2>&1 &
+
+    touch "$MPVPAPER_FLAG"
 fi
 
 echo "[✓] Wallpaper package applied"
