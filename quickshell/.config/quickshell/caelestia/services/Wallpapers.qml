@@ -31,11 +31,11 @@ Searcher {
             const packageDir = path.slice(0, wallIndex + 5);
 	    console.log("PACKAGE:", packageDir);
 
-	    Quickshell.execDetached([
-		    "notify-send",
-		    "WALL PACKAGE",
-		    PackageDir
-        ]);
+Quickshell.execDetached([
+    "sh",
+    "-c",
+    "notify-send TEST1 && /home/arun/dotfiles/wallpaper-system/scripts/wall-set '" + packageDir + "' && notify-send TEST2"
+]);
 
         return;
     }
