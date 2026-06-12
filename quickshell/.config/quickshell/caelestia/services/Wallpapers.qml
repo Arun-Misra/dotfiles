@@ -21,6 +21,24 @@ Searcher {
     property bool previewColourLock
 
     function setWallpaper(path: string): void {
+
+    	console.log("SET WALLPAPER:", path);
+
+    	const wallIndex = path.indexOf(".wall/");
+	console.log("WALL INDEX:", wallIndex);
+
+    	if (wallIndex !== -1) {
+            const packageDir = path.slice(0, wallIndex + 5);
+	    console.log("PACKAGE:", packageDir);
+
+	    Quickshell.execDetached([
+		    "notify-send",
+		    "WALL PACKAGE",
+		    PackageDir
+        ]);
+
+        return;
+    }
     actualCurrent = path;
 
     Quickshell.execDetached([
