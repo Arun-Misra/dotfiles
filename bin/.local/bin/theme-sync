@@ -14,10 +14,13 @@ echo "[*] Background: $BG"
 echo "[*] Foreground: $FG"
 echo "[*] Accent    : $ACCENT"
 
-sudo mkdir -p /boot/limine
-sudo cp "$WALLPAPER" /boot/limine/wallpaper.jpg
+mkdir -p "$HOME/dotfiles/system/limine"
+
+cp "$WALLPAPER" \
+   "$HOME/dotfiles/system/limine/wallpaper.jpg"
 
 TMP=$(mktemp)
+LIMINE_CFG="$HOME/dotfiles/system/limine/limine.conf"
 
 awk \
 -v bg="$BG" \
@@ -52,9 +55,8 @@ print "# END THEME-SYNC"
 }
 
 !skip
-' /boot/limine.conf > "$TMP"
+' "$LIMINE_CFG" > "$TMP"
 
-sudo cp "$TMP" /boot/limine.conf
-rm "$TMP"
+mv -f "$TMP" "$LIMINE_CFG"
 
 echo "[✓] Limine config updated"

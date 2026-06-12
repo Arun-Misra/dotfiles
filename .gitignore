@@ -1,3 +1,4 @@
 *.bak
 *.working
 *.test
+**/system/limine/wallpaper.jpg
